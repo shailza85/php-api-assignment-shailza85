@@ -2,10 +2,12 @@ body {
     background-color: burlywood;
 }
 
-h1,h2 {
-    color:darkred;
+dt,ol {
+    color: blue;
+    font-size: large;
+    font-weight: bolder;
 }
-pre {
+dd,h1 {
+    font-weight: bolder;
     color: brown;
-    font-size: x-large;
 }

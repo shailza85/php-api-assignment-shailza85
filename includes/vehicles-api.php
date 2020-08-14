@@ -1,9 +1,9 @@
 <?php
 
-  // Retrieve list of Articles from json file.
-function retrieveDogAPI() {
+  // Retrieve list of Vehicles from json file.
+function retrieveVehicleAPI() {
     // Retrieve response string from API.
-    $responseString = file_get_contents( "https://dog.ceo/api/breeds/list/all" );
+    $responseString = file_get_contents( "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeId/440?format=json" );
     //var_dump( $responseString ); // Getting a result in browser!
     // Convert response JSON string into a PHP array / object.
   
@@ -11,10 +11,12 @@ function retrieveDogAPI() {
       // Convert the JSON string into a valid PHP object using json_decode().
       if ( ( $responseObj = json_decode( $responseString ) ) !== NULL ) {
        //var_dump( $responseObj );
-        // Collect the array of results from the response object's "articles" property.
-        $message = $responseObj->message;
-        var_dump( $message);
-        return $message;
+        // Collect the array of results from the response object's "Results" property.
+        $Results = $responseObj->Results;
+        //echo '<pre>';
+        //var_dump( $Results);
+        //echo '</pre>';
+        return $Results;
     } else {// Could not convert string to object (json_decode().)
      echo 'Could not interpret API response.';
     }

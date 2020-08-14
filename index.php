@@ -1,5 +1,6 @@
 <?php
-include 'includes/dogs-api.php';
+include 'includes/vehicles-api.php';
+include 'includes/VehiclesFromAPI.Class.php';
 
 global $title; 
 $title = 'PHP API';
@@ -8,17 +9,16 @@ include 'templates/header.php';
 
   <h1><?php echo $title; ?></h1>
 
-  <?php //include 'templates/navigation.php'; ?>
-<h2>Dogs API Data</h2>
-<?php 
-if ( $messages = retrieveDogAPI() ) : ?>
+  <?php  //Display the retrieved data from json file
+  //call retrieveVehicleAPI() function from vehicles-api.php file.
+  if ( $result = retrieveVehicleAPI() ) : ?>
     <ol>
-      <?php foreach ( $messages as $message ) : ?>
-       
+      <?php foreach ( $result as $result1 ) : ?>
+        <?php $currentResult = new VehiclesFromAPI( $result1->Model_ID, $result1->Make_Name, $result1->Model_Name ); ?>
         <li>
-          <?php $message->output(); ?>
+          <?php $currentResult->output(); ?>
         </li>
       <?php endforeach; ?>
     </ol>
-  <?php endif; ?>
+  <?php endif; 
 include 'templates/footer.php';
