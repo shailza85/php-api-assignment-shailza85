@@ -1,16 +1,24 @@
 <?php
-// Start our session, and declare our history function.
+include 'includes/dogs-api.php';
 
-global $title; // Try to avoid globals, as they are harder to troubleshoot and track through your application.
-$title = 'PHP API'; // $GLOBALS['title'] = 'PHP Homepage';
+global $title; 
+$title = 'PHP API';
 include 'templates/header.php';
 ?>
 
   <h1><?php echo $title; ?></h1>
 
-  <?php include 'templates/navigation.php'; ?>
-
- 
- 
-
-<?php include 'templates/footer.php';
+  <?php //include 'templates/navigation.php'; ?>
+<h2>Dogs API Data</h2>
+<?php 
+if ( $messages = retrieveDogAPI() ) : ?>
+    <ol>
+      <?php foreach ( $messages as $message ) : ?>
+       
+        <li>
+          <?php $message->output(); ?>
+        </li>
+      <?php endforeach; ?>
+    </ol>
+  <?php endif; ?>
+include 'templates/footer.php';
